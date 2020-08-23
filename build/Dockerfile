@@ -19,7 +19,7 @@ RUN apt-get install python3 -y
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "/tmp/get-pip.py" 
 RUN python3 /tmp/get-pip.py   
 RUN pip install -r /tmp/requirements.txt
-RUN echo 'alias hi="echo hello"' >> ~/.bashrc
+RUN echo 'alias python=python3' >> ~/.bashrc
 
 # Set default CMD
 CMD ["/bin/bash"]
