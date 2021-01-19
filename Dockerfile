@@ -2,7 +2,7 @@
 FROM ubuntu:xenial-20200706
 
 # Copy local files
-Copy requirements.txt /tmp/requirements.txt
+COPY requirements.txt /tmp/requirements.txt
 
 # Set docker labels
 LABEL maintainer="markk@innoviz-tech.com"
@@ -20,17 +20,26 @@ libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev \
 xz-utils tk-dev libffi-dev liblzma-dev python-openssl
 
 RUN curl https://pyenv.run | bash
-ENV PATH="~/.pyenv/bin:$PATH"
-RUN echo "# pyenv" >> ~/.bashrc && echo "eval \"$(pyenv init -)\"" >> ~/.bashrc && echo "" >> ~/.bashrc
+ENV PYENV_ROOT /root/.pyenv
+ENV PATH $PYENV_ROOT/bin:$PATH
 
-# install python 3.9.1 and set as global
+RUN echo "" >> ~/.bashrc && \
+    echo "# pyenv" >> ~/.bashrc && \
+    echo "eval \"\$(pyenv init -)\"" >> ~/.bashrc && \
+    echo "" >> ~/.bashrc
+
+# # install python 3.9.1 and set as global
 RUN pyenv install 3.9.1
 RUN pyenv global 3.9.1
 
-# install conan & cmake
-RUN pip install -r /tmp/requirements.txt
+# # # install conan & cmake
+RUN $PYENV_ROOT/versions/3.9.1/bin/pip install -r /tmp/requirements.txt
 
-# Set default CMD
+# vscode devcontainer support
+RUN useradd -m -s /bin/bash vscode && \
+    echo 'vscode ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
+
+# # Set default CMD
 CMD ["/bin/bash"]
 
 

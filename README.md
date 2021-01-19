@@ -10,4 +10,7 @@
 - cmake@3.18.0
 
 ## Distribution
-docker build . -t innoviz-swt/swt_xenial_docker:0.0.0
+docker build . -t innoviz-swt/swt_xenial_docker:0.0.0 --rm
+
+## MISC
+powershell -c docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
