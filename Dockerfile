@@ -10,15 +10,30 @@ LABEL version="0.0.0"
 LABEL description="This is custom Docker Image for Innoviz SWT ubunto 16.04 development."
 
 # Run enviroment setup flow
-RUN apt-get update
-RUN apt-get install -y build-essential sudo curl git 
+RUN apt-get update && apt-get install -y \
+  build-essential \
+  sudo \
+  curl \
+  git \
+  p7zip-full \
+  ## pyenv - python dependencies, https://github.com/pyenv/pyenv/wiki/Common-build-problems
+  libssl-dev zlib1g-dev libbz2-dev \
+  libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev \
+  xz-utils tk-dev libffi-dev liblzma-dev python-openssl \
+  # required by vscode 
+  openssh-client \
+  # required by oh-my-zsh
+  zsh locales fonts-powerline\ 
+  && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+# ohmyzsh in docker https://github.com/deluan/zsh-in-docker
+RUN echo Y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# update locale https://unix.stackexchange.com/questions/90772/first-characters-of-the-command-repeated-in-the-display-when-completing
+# RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+RUN usermod -s $(which zsh) root
 
 # pyenv, https://github.com/pyenv/pyenv
-## python dependencies, https://github.com/pyenv/pyenv/wiki/Common-build-problems
-RUN apt-get install -y libssl-dev zlib1g-dev libbz2-dev \
-libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev \
-xz-utils tk-dev libffi-dev liblzma-dev python-openssl
-
 RUN curl https://pyenv.run | bash
 ENV PYENV_ROOT /root/.pyenv
 ENV PATH $PYENV_ROOT/bin:$PATH
@@ -28,16 +43,17 @@ RUN echo "" >> ~/.bashrc && \
     echo "eval \"\$(pyenv init -)\"" >> ~/.bashrc && \
     echo "" >> ~/.bashrc
 
+RUN echo "" >> ~/.zshrc && \
+    echo "# pyenv" >> ~/.zshrc && \
+    echo "eval \"\$(pyenv init -)\"" >> ~/.zshrc && \
+    echo "" >> ~/.zshrc
+
 # # install python 3.9.1 and set as global
-RUN pyenv install 3.9.1
-RUN pyenv global 3.9.1
+# RUN pyenv install 3.9.1
+# RUN pyenv global 3.9.1
 
 # # # install conan & cmake
-RUN $PYENV_ROOT/versions/3.9.1/bin/pip install -r /tmp/requirements.txt
-
-# vscode devcontainer support
-RUN useradd -m -s /bin/bash vscode && \
-    echo 'vscode ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
+# RUN $PYENV_ROOT/versions/3.9.1/bin/pip install -r /tmp/requirements.txt
 
 # # Set default CMD
 CMD ["/bin/bash"]
