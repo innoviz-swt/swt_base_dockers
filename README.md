@@ -14,7 +14,10 @@
 - [vim](https://www.vim.org/) 
 
 ## Distribution
-docker build . -t innoviz-swt/swt_xenial_docker:0.0 --rm
+```
+python ./manage.py {ver} -p
+```
+{ver} should be in major.minor.build formant, ex: 1.0.0
 
 ## MISC
 powershell -c docker rmi $(docker images --filter "dangling=true" -q --no-trunc)

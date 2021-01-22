@@ -11,8 +11,8 @@ def dist():
     ver = (len(sys.argv) > 1 and sys.argv[1]) or '0.0.0'
     push = (len(sys.argv) > 2 and sys.argv[2]) or ''
     build = run_process_with_stdout('git rev-parse --short HEAD').strip()
-    repo_name="swt_xenial_docker"
-    hub_user="innoviz-swt"
+    repo_name="swt-xenial-docker"
+    hub_user="innovizswt"
     
     print(f'################################################################')
     print(f'# {repo_name} distribution')
@@ -24,7 +24,7 @@ def dist():
     print('')
 
     print("# build image")
-    run_process(f"docker build . -t {repo_name}:{ver} --rm --build-arg VER={ver} --build-arg BUILD={build}")
+    run_process(f"docker build . -t {hub_user}/{repo_name}:{ver} --rm --build-arg VER={ver} --build-arg BUILD={build}")
 
     if push == "-p":   
         print("# push image")
