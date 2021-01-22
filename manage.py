@@ -24,7 +24,7 @@ def dist():
     print('')
 
     print("# build image")
-    run_process(f"docker build . -t {repo_name}:{ver} --rm --build-arg VER={ver} BUILD={build}")
+    run_process(f"docker build . -t {repo_name}:{ver} --rm --build-arg VER={ver} --build-arg BUILD={build}")
 
     if push == "-p":   
         print("# push image")
