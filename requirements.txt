@@ -1,2 +1,1 @@
-cmake==3.18.0
-conan==1.22.2
+rapid-env==0.0.1
