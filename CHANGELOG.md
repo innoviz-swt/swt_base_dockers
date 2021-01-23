@@ -1,6 +1,6 @@
 # SWT Base Dockers Changelog
 
-## 0.0.0
+## 1.0.0
 - OS
     - ubuntu 16.04
     - ubuntu 18.04
