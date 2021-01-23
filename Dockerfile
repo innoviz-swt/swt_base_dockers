@@ -1,22 +1,28 @@
-ARG VARIANT="xenial-20200706"
-ARG VER="0.0.0"
-ARG BUILD="xxxxx"
+# syntax based on https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+ARG BASE="xenial"
 
 # Start from base image of ubuntu 16.04 - see https://hub.docker.com/_/ubuntu 
-FROM ubuntu:${VARIANT}
+FROM ubuntu:${BASE}
+
+# define ARGS after from to take effect at current stage
+ARG VARIANT="ubunto-16.04"
+ARG VER="0.0.0"
+ARG BUILD="xxxxx"
+ARG BASE="xenial"
 
 # Set docker labels
-LABEL maintainer="markk@innoviz-tech.com"
-LABEL version=${VER}
-LABEL build=${BUILD}
-LABEL variant=${VARIANT}
-LABEL description="This is custom Docker Image for Innoviz SWT ${VARIANT} development."
-LABEL source-code="https://github.com/innoviz-swt/swt_xenial_docker"
-# full version format: "{major}.{minor}.{patch}-{build} {variant}"
-LABEL full_version="${VER}-${BUILD} ${VARIANT}"
+LABEL maintainer="markk@innoviz-tech.com" \
+      version=${VER} \
+      build=${BUILD} \
+      variant=${VARIANT} \
+      base=${BASE} \
+      # full version format: "{major}.{minor}.{patch}-{build} {variant}"
+      full_version="${VER}-${BUILD} ${VARIANT}" \
+      description="This is base Docker Image for Innoviz SWT ${VARIANT}($BASE) development." \
+      source-code="https://github.com/innoviz-swt/swt_dockers"
 
 # Run enviroment setup flow
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y \
   build-essential \
   sudo \
   curl \
@@ -62,7 +68,7 @@ RUN pyenv global 3.9.1
 # # install conan & cmake
 RUN $PYENV_ROOT/versions/3.9.1/bin/pip install cmake==3.18.0 conan==1.22.2
 
-# # Set default CMD
+# Set default CMD
 CMD ["/bin/bash"]
 
 

@@ -1,7 +1,7 @@
-# swt_xenial_docker
+# SWT BASE DOCKERS
 
 ## Apps installed
-- build-essentials (gcc 5)
+- build-essentials (GCC 5)
 - sudo
 - curl
 - [git](https://git-scm.com/)
@@ -17,7 +17,4 @@
 ```
 python ./manage.py {ver} -p
 ```
-{ver} should be in major.minor.build formant, ex: 1.0.0
-
-## MISC
-powershell -c docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+{ver} should be in major.minor.build format, ex: 1.0.0

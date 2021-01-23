@@ -3,7 +3,6 @@ import os
 from pathlib import Path
 import sys
 
-node_ver = '12.18.4'
 venvbase = Path("venv/Scripts")
 
 
@@ -28,14 +27,13 @@ def venv_setup():
     # python environment
     venv_run_process('python -m venv venv')
 
-    venv_run_process(f'{venvbase}/pip install --upgrade pip --user')
+    venv_run_process(f'{venvbase}/python -m pip install --upgrade pip')
     venv_run_process(f'{venvbase}/pip install -r requirements.txt')
     venv_run_process(f'{venvbase}/python envsetup.py')
 
 
 def envsetup():
     from rapidenv.osh import run_process, run_process_with_stdout
-
 
     print("# pip install")
     run_process(f'{venvbase}/pip install -r requirements.txt')
