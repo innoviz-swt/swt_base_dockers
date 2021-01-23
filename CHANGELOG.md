@@ -1,13 +1,18 @@
-# SWT Xenial Docker Changelog
+# SWT Base Dockers Changelog
 
-# 0.1.0
-- added git, build-essentials, sudo, pyenv, python 3.9.1 (via pyenv), 7zip, openssh-client (for vscode), zsh local fonts-powerline (for +oh-my-zsh)
-- python 3.9.1 set as global (via pyenv)
-- zsh terminal
-- vim editor 
-
-# 0.0.0
-Image is based on ubunto 16.04 xenial, with installations of python 3.5, conan, and cmake.
-- curl
-- conan
-- cmake
+## 0.0.0
+- OS
+    - ubunto 16.04
+    - ubunto 18.04
+- packages
+    - build-essentials (GCC 5)
+    - sudo
+    - curl
+    - [git](https://git-scm.com/)
+    - 7zip
+    - openssh-client (for vscode)
+    - [pyenv](https://github.com/pyenv/pyenv) (+ [python essentials](https://github.com/pyenv/pyenv/wiki/Common-build-problems))
+    - [conan](https://conan.io/)@1.22.2
+    - [cmake](https://cmake.org/)@3.18.0
+    - [zsh (+oh my zsh)](https://ohmyz.sh/)
+    - [vim](https://www.vim.org/) 
