@@ -1,6 +1,10 @@
 # SWT BASE DOCKERS
 
-## Apps installed
+# OS supported
+- ubuntu 16.04, xenial
+- ubuntu 18.04, bionic
+
+## packages\apps installed
 - build-essentials (GCC 5)
 - sudo
 - curl

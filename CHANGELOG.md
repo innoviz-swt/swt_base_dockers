@@ -2,8 +2,8 @@
 
 ## 0.0.0
 - OS
-    - ubunto 16.04
-    - ubunto 18.04
+    - ubuntu 16.04
+    - ubuntu 18.04
 - packages
     - build-essentials (GCC 5)
     - sudo
