@@ -19,7 +19,7 @@ LABEL maintainer="markk@innoviz-tech.com" \
       # full version format: "{major}.{minor}.{patch}-{build} {variant}"
       full_version="${VER}-${BUILD} ${VARIANT}" \
       description="This is base Docker Image for Innoviz SWT ${VARIANT}($BASE) development." \
-      source-code="https://github.com/innoviz-swt/swt_dockers"
+      source-code="https://github.com/innoviz-swt/swt_base_dockers"
 
 # Run enviroment setup flow
 RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y \
