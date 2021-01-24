@@ -3,9 +3,9 @@ import sys
 from rapidenv.osh import run_process, run_process_with_stdout
 
 variants_map = {
-    "ubunto-16.04": "xenial",
-    "ubunto-18.04": "bionic",
-    "ubunto-20.04": "focal",
+    "ubuntu-16.04": "xenial",
+    "ubuntu-18.04": "bionic",
+    "ubuntu-20.04": "focal",
 }
 
 

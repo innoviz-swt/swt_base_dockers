@@ -5,7 +5,7 @@ ARG BASE="xenial"
 FROM ubuntu:${BASE}
 
 # define ARGS after from to take effect at current stage
-ARG VARIANT="ubunto-16.04"
+ARG VARIANT="ubuntu-16.04"
 ARG VER="0.0.0"
 ARG BUILD="xxxxx"
 ARG BASE="xenial"
