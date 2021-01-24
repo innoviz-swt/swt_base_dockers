@@ -43,7 +43,12 @@ RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y \
 # ohmyzsh in docker https://github.com/deluan/zsh-in-docker
 RUN echo Y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # update locale https://unix.stackexchange.com/questions/90772/first-characters-of-the-command-repeated-in-the-display-when-completing
-# RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
+    echo "# zsh locale" >> ~/.zshrc && \    
+    echo 'export LANG=en_US.utf8' >> ~/.zshrc && \
+    echo "" >> ~/.zshrc
+
+# set zsh as default terminal
 RUN usermod -s $(which zsh) root
 
 # pyenv, https://github.com/pyenv/pyenv
