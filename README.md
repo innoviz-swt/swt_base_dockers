@@ -3,9 +3,10 @@
 # OS supported
 - ubuntu 16.04, xenial
 - ubuntu 18.04, bionic
+- ubunto 20.04, focal
 
 ## packages\apps installed
-- build-essentials (GCC 5)
+- build-essentials (GCC)
 - sudo
 - curl
 - [git](https://git-scm.com/)
