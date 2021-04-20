@@ -1,5 +1,8 @@
 # SWT Base Dockers Changelog
 
+## 1.0.1
+- pyenv: add shims folder (/root/.pyenv/shims) to PATH
+
 ## 1.0.0
 - OS
     - ubuntu 16.04
