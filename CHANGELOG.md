@@ -1,4 +1,7 @@
 # SWT Base Dockers Changelog
+## 1.0.2
+- zsh: char limit bug, added "[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'" to zsh
+
 
 ## 1.0.1
 - pyenv: add shims folder (/root/.pyenv/shims) to PATH

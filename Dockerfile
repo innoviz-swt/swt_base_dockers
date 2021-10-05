@@ -1,5 +1,5 @@
 # syntax based on https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
-ARG BASE="xenial"
+ARG BASE="focal"
 
 # Start from base image of ubuntu 16.04 - see https://hub.docker.com/_/ubuntu 
 FROM ubuntu:${BASE}
@@ -37,6 +37,7 @@ RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y \
   openssh-client \
   # required by oh-my-zsh
   zsh locales fonts-powerline\ 
+  # clean apt-get cache
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
@@ -49,7 +50,8 @@ RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
     echo "" >> ~/.zshrc
 
 # set zsh as default terminal
-RUN usermod -s $(which zsh) root
+# todo remove this
+RUN usermod -s $(which zsh) root 
 
 # pyenv, https://github.com/pyenv/pyenv
 RUN curl https://pyenv.run | bash
