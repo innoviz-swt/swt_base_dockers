@@ -1,4 +1,10 @@
 # SWT Base Dockers Changelog
+## 1.0.3
+- added ubuntu 
+- remove ubuntu-16.04 - xenial
+- added ubuntu-20.04 - focal
+- remove zsh support (KISS)
+
 ## 1.0.2
 - zsh: char limit bug, added "[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'" to zsh
 

@@ -3,9 +3,9 @@ import sys
 from rapidenv.osh import run_process, run_process_with_stdout
 
 variants_map = {
-    "ubuntu-16.04": "xenial",
+    # "ubuntu-16.04": "xenial",
     "ubuntu-18.04": "bionic",
-    "ubuntu-20.04": "focal",
+    # "ubuntu-20.04": "focal",
 }
 
 
@@ -24,7 +24,7 @@ def dist_variant(hub_user, repo_name, ver, build, variant, base, push):
     print("")
 
 
-def dist():
+def main():
     # https://docs.docker.com/docker-hub/repos/
     ver = (len(sys.argv) > 1 and sys.argv[1]) or '0.0.0'
     push = (len(sys.argv) > 2 and sys.argv[2]) or ''
@@ -46,4 +46,4 @@ def dist():
 
 
 if __name__ == "__main__":
-    dist()
+    main()

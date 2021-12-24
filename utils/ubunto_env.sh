@@ -26,4 +26,22 @@ sudo echo "" >> ~/.bashrc && \
 	echo "" >> ~/.bashrc
   
   
+# docker
+# https://medium.com/geekculture/run-docker-in-windows-10-11-wsl-without-docker-desktop-a2a7eb90556d
+sudo apt install docker.io -y
+
+# add to /etc/sudousers
+#sudo visudo
+# # Docker daemon specification
+# sungkim ALL=(ALL) NOPASSWD: /usr/bin/dockerd
+
+echo '# Start Docker daemon automatically when logging in if not running.' >> ~/.bashrc
+echo 'RUNNING=`ps aux | grep dockerd | grep -v grep`' >> ~/.bashrc
+echo 'if [ -z "$RUNNING" ]; then' >> ~/.bashrc
+echo '    sudo dockerd > /dev/null 2>&1 &' >> ~/.bashrc
+echo '    disown' >> ~/.bashrc
+echo 'fi' >> ~/.bashrc
+
 sudo apt-get clean && rm -rf /var/lib/apt/lists/*  
+
+sudo usermod -aG docker $USER
