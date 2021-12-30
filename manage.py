@@ -24,12 +24,11 @@ def dist_variant(hub_user, repo_name, ver, build, variant, base, push):
     print("")
 
 
-def main():
+def build(repo_name):
     # https://docs.docker.com/docker-hub/repos/
     ver = (len(sys.argv) > 1 and sys.argv[1]) or '0.0.0'
     push = (len(sys.argv) > 2 and sys.argv[2]) or ''
     build = run_process_with_stdout('git rev-parse --short HEAD').strip()
-    repo_name = "swt-base"
     hub_user = "innovizswt"
 
     print(f'################################################################')
@@ -43,6 +42,10 @@ def main():
 
     for (variant, base) in variants_map.items():
         dist_variant(hub_user, repo_name, ver, build, variant, base, push)
+
+
+def main():
+    build("swt-jlab")
 
 
 if __name__ == "__main__":
